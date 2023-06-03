@@ -1,21 +1,24 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
-const addTask = () => {
-  const task = inputBox.value.trim();
-  if (task === "") {
-    alert("Please enter a task");
-    return;
+const addTask = (event) => {
+  if (event.key === "Enter") {
+    const task = inputBox.value.trim();
+    if (task === "") {
+      alert("Please enter a task");
+      return;
+    }
+    const li = document.createElement("li");
+    li.textContent = task;
+    listContainer.appendChild(li);
+    const span = document.createElement("span");
+    span.innerHTML = "&#10006;";
+    li.appendChild(span);
+    inputBox.value = "";
+    saveData();
   }
-  const li = document.createElement("li");
-  li.textContent = task;
-  listContainer.appendChild(li);
-  const span = document.createElement("span");
-  span.innerHTML = "&#10006;";
-  li.appendChild(span);
-  inputBox.value = "";
-  saveData();
 };
+inputBox.addEventListener("keydown", addTask);
 
 const handleClick = (event) => {
   const target = event.target;
