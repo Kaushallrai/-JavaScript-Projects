@@ -1,3 +1,10 @@
+const questionElement = document.getElementById("question");
+const answerButton = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
 const questions = [
   {
     question: "What is the full form of HTML?",
@@ -181,45 +188,40 @@ const questions = [
   },
 ];
 
-const questionElement = document.getElementById("question");
-const answerButton = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
-
-let currentQuestionIndex = 0;
-let score = 0;
-
-function startQuiz() {
+const startQuiz = () => {
   currentQuestionIndex = 0;
   score = 0;
+
   nextButton.innerHTML = "Next";
   showQuestions();
-}
-function showQuestions() {
+};
+
+const showQuestions = () => {
   resetState();
-  let currentQuestion = questions[currentQuestionIndex];
-  let questionNo = currentQuestionIndex + 1;
-  questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.innerHTML = `${currentQuestionIndex + 1}. ${
+    currentQuestion.question
+  }`;
 
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("btn");
     answerButton.appendChild(button);
+
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", selectAnswer);
   });
-}
+};
 
-function resetState() {
+const resetState = () => {
   nextButton.style.display = "none";
-  while (answerButton.firstChild) {
-    answerButton.removeChild(answerButton.firstChild);
-  }
-}
+  answerButton.innerHTML = "";
+};
 
-function selectAnswer(e) {
+const selectAnswer = (e) => {
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
   if (isCorrect) {
@@ -228,6 +230,7 @@ function selectAnswer(e) {
   } else {
     selectedBtn.classList.add("incorrect");
   }
+
   Array.from(answerButton.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -235,22 +238,24 @@ function selectAnswer(e) {
     button.disabled = true;
   });
   nextButton.style.display = "block";
-}
+};
 
-function showScore() {
+const showScore = () => {
   resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${questions.length} !`;
+  questionElement.innerHTML = `Your scored ${score} out of ${questions.length}`;
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
-}
-function handleNextButton() {
+};
+
+const handleNextButton = () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     showQuestions();
   } else {
     showScore();
   }
-}
+};
+
 nextButton.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length) {
     handleNextButton();
@@ -258,4 +263,5 @@ nextButton.addEventListener("click", () => {
     startQuiz();
   }
 });
+
 startQuiz();

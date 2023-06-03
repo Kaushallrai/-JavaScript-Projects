@@ -5,63 +5,62 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background: linear-gradient(-90deg, #6893d7, #8b8b8b);
+  background: linear-gradient(90deg, #71b7e6, #9b59b6);
 }
-.app {
-  background: #fff;
+.container {
+  background-color: #fff;
   width: 90%;
   max-width: 600px;
   margin: 100px auto 0;
-  border-radius: 10px;
   padding: 30px;
+  border-radius: 10px;
 }
-.app h1 {
-  font-size: 25px;
-  color: #001e4d;
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #333;
+  border-bottom: 1px solid #a9a9a9;
+  font-size: 24px;
   font-weight: 600;
-  border-bottom: 1px solid #333;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 .quiz {
-  padding: 20px 0;
+  margin-bottom: 30px 0;
 }
 .quiz h2 {
   font-size: 18px;
-  color: #001e4d;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 .btn {
-  background: #fff;
-  color: #222;
-  font-weight: 500;
   width: 100%;
-  border: 1px solid #b7b7b7;
   padding: 10px;
-  margin: 10px 0;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
   text-align: left;
-  border-radius: 4px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.3s;
 }
-.btn:hover:not([disabled]) {
-  background-color: #222;
-  color: #fff;
-}
-.btn:disabled {
-  cursor: no-drop;
+.btn:hover {
+  background-color: #f2f2f2;
 }
 #next-btn {
-  background: #001e4d;
+  background-color: #3498db;
   color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
   font-weight: 500;
-  width: 150px;
-  border: 0;
-  padding: 10px;
+  width: 100px;
   margin: 20px auto 0;
-  border-radius: 4px;
-  cursor: pointer;
   display: none;
-  transition: 0.3s;
+  cursor: pointer;
 }
 .correct {
   background: #9aeabc;
